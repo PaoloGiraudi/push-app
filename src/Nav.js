@@ -4,7 +4,7 @@ import { AiOutlineLock as Lock } from "react-icons/ai";
 import { AiOutlineUnlock as Unlock } from "react-icons/ai";
 import { AiOutlinePlusSquare as Add } from "react-icons/ai";
 
-function Nav({ auth }) {
+function Nav({ isLoggedIn }) {
   return (
     <nav>
       <Link to="/">PushApp</Link>
@@ -12,7 +12,7 @@ function Nav({ auth }) {
         <li>
           <Link to="/about">What is this?</Link>
         </li>
-        {auth && (
+        {isLoggedIn && (
           <li>
             <Link to="/form">
               <Add className="icon" />
@@ -21,7 +21,7 @@ function Nav({ auth }) {
         )}
         <li>
           <Link to="/login">
-            {auth ? (
+            {isLoggedIn ? (
               <Unlock className="icon unlock" />
             ) : (
               <Lock className="icon lock" />

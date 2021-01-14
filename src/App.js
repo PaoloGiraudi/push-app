@@ -22,7 +22,7 @@ const App = () => {
   return (
     <Router>
       <div className="App">
-        <Nav auth={isLoggedIn} />
+        <Nav isLoggedIn={isLoggedIn} />
 
         <Switch>
           <Route path="/" exact>
@@ -32,7 +32,7 @@ const App = () => {
             <About />
           </Route>
           <Route path="/form">
-            <Form auth={isLoggedIn} />
+            <Form />
           </Route>
           <Route path="/login">
             <Login />
