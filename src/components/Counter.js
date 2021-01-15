@@ -3,11 +3,9 @@ import styled from "styled-components";
 import { Context } from "../Context";
 
 const Container = styled.div`
-  height: 20%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0.5em 1em;
   border-radius: 10px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 `;

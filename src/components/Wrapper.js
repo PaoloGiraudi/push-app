@@ -9,8 +9,9 @@ const Wrapper = styled.div`
   max-width: 450px;
   height: 100vh;
   width: 100vw;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 1.25fr 1fr 3.25fr 0.75fr;
+  padding: 1rem;
 `;
 
 export default function Header({ children, ...props }) {
