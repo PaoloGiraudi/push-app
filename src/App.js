@@ -12,34 +12,6 @@ import Counter from "./components/Counter";
 import Nav from "./components/Nav";
 
 const App = () => {
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const [pushups, setPushups] = useState(0);
-
-  // firebase.auth().onAuthStateChanged(function (user) {
-  //   if (user) {
-  //     setIsLoggedIn(true);
-  //   } else {
-  //     setIsLoggedIn(false);
-  //   }
-  // });
-
-  // useEffect(() => {
-  //   const db = firebase.firestore();
-  //   const docRef = db.collection("pushups").doc("--total--");
-
-  //   docRef
-  //     .get()
-  //     .then(function (doc) {
-  //       if (doc.exists) {
-  //         const { total } = doc.data();
-  //         setPushups(total);
-  //       }
-  //     })
-  //     .catch(function (error) {
-  //       console.log("Error:", error);
-  //     });
-  // }, [pushups]);
-
   return (
     <ContextProvider>
       <Router>
