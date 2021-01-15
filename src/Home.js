@@ -1,25 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import firebase from "./firebase";
 
 function Home() {
-  const [pushups, setPushups] = useState([]);
+  const { pushups } = useContext(Context);
 
-  useEffect(() => {
-    const db = firebase.firestore();
-    const docRef = db.collection("pushups").doc("--total--");
+  // const [pushups, setPushups] = useState([]);
 
-    docRef
-      .get()
-      .then(function (doc) {
-        if (doc.exists) {
-          const { total } = doc.data();
-          setPushups(total);
-        }
-      })
-      .catch(function (error) {
-        console.log("Error:", error);
-      });
-  }, [pushups]);
+  // useEffect(() => {
+  //   const db = firebase.firestore();
+  //   const docRef = db.collection("pushups").doc("--total--");
+
+  //   docRef
+  //     .get()
+  //     .then(function (doc) {
+  //       if (doc.exists) {
+  //         const { total } = doc.data();
+  //         setPushups(total);
+  //       }
+  //     })
+  //     .catch(function (error) {
+  //       console.log("Error:", error);
+  //     });
+  // }, [pushups]);
 
   return (
     <div>

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { Context } from "../Context";
 
 const Container = styled.div`
   height: 20%;
@@ -29,9 +30,11 @@ const Count = styled.h1`
 `;
 
 export default function Counter({ children, ...props }) {
+  const { pushups } = useContext(Context);
+  console.log("hej");
   return (
     <Container>
-      <Count>{props.pushups}</Count>
+      <Count>{pushups}</Count>
     </Container>
   );
 }

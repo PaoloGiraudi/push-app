@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../Context";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { AiOutlineLock as Lock } from "react-icons/ai";
-import { AiOutlineUnlock as Unlock } from "react-icons/ai";
-import { AiOutlinePlusSquare as Add } from "react-icons/ai";
+import { Link as NavbarLink } from "react-router-dom";
+import { MdLockOutline as Lock } from "react-icons/md";
+import { MdLockOpen as Unlock } from "react-icons/md";
+import { FiPlusCircle as Plus } from "react-icons/fi";
 
 const Navbar = styled.nav`
   height: 10%;
@@ -22,39 +23,37 @@ const NavUl = styled.ul`
   justify-content: space-evenly;
   align-items: center;
 `;
-const NavLi = styled.li`
-  font-size: 1.5rem;
+const NavLink = styled(NavbarLink)`
+  font-size: 1.75rem;
   list-style: none;
   cursor: pointer;
+  color: #fff;
+  opacity: 0.9;
+  text-decoration: none;
 
-  a {
-    color: white;
+  &.lock {
+    display: grid;
+    place-items: center;
+    color: ${(props) => props.color};
   }
 `;
 
 export default function Nav({ children, ...props }) {
+  const { isLoggedIn } = useContext(Context);
   return (
     <Navbar>
       <NavUl>
-        <NavLi>
-          <Link to="/about">About</Link>
-        </NavLi>
-        {props.isLoggedIn && (
-          <NavLi>
-            <Link to="/form">
-              <Add className="icon" />
-            </Link>
-          </NavLi>
+        <NavLink to="/about">About</NavLink>
+
+        {isLoggedIn && (
+          <NavLink to="/form">
+            <Plus />
+          </NavLink>
         )}
-        <NavLi>
-          <Link to="/login">
-            {props.isLoggedIn ? (
-              <Unlock className="icon unlock" />
-            ) : (
-              <Lock className="icon lock" />
-            )}
-          </Link>
-        </NavLi>
+
+        <NavLink to="/login" className="lock">
+          {isLoggedIn ? <Unlock color="green" /> : <Lock color="red" />}
+        </NavLink>
       </NavUl>
     </Navbar>
   );
