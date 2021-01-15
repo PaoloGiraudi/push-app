@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import firebase from "./firebase";
-import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Form from "./Form";
-import Nav from "./Nav";
+// import Nav from "./Nav";
 import About from "./About";
-import Home from "./Home";
 import Login from "./Login";
+
+import Header from "./components/Header";
+import Wrapper from "./components/Wrapper";
+import Counter from "./components/Counter";
+import Nav from "./components/Nav";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [pushups, setPushups] = useState(0);
 
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
@@ -19,15 +23,31 @@ const App = () => {
     }
   });
 
+  useEffect(() => {
+    const db = firebase.firestore();
+    const docRef = db.collection("pushups").doc("--total--");
+
+    docRef
+      .get()
+      .then(function (doc) {
+        if (doc.exists) {
+          const { total } = doc.data();
+          setPushups(total);
+        }
+      })
+      .catch(function (error) {
+        console.log("Error:", error);
+      });
+  }, [pushups]);
+
   return (
     <Router>
-      <div className="App">
-        <Nav isLoggedIn={isLoggedIn} />
-
+      <Wrapper>
+        <Header />
+        <Counter pushups={pushups} />
         <Switch>
-          <Route path="/" exact>
-            <Home />
-          </Route>
+          <Route path="/" exact />
+
           <Route path="/about">
             <About />
           </Route>
@@ -38,7 +58,8 @@ const App = () => {
             <Login />
           </Route>
         </Switch>
-      </div>
+        <Nav isLoggedIn={isLoggedIn} />
+      </Wrapper>
     </Router>
   );
 };
