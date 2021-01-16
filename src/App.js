@@ -1,8 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Form from "./Form";
 import About from "./About";
-import Login from "./Login";
+
 import { ContextProvider } from "./Context";
 
 import Header from "./components/Header";
@@ -10,6 +9,8 @@ import Wrapper from "./components/Wrapper";
 import Counter from "./components/Counter";
 import Nav from "./components/Nav";
 import SwitchWrapper from "./components/SwitchWrapper";
+import Login from "./components/Login";
+import AddForm from "./components/AddForm";
 
 const App = () => {
   return (
@@ -25,7 +26,7 @@ const App = () => {
                 <About />
               </Route>
               <Route path="/form">
-                <Form />
+                <AddForm />
               </Route>
               <Route path="/login">
                 <Login />
