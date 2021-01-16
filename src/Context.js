@@ -9,27 +9,7 @@ function ContextProvider({ children }) {
   const [pushups, setPushups] = useState(0);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  // Log in
-
-  const handleLogIn = () => {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .catch((error) => {
-        console.log("Error:", error);
-      });
-  };
-
-  // Authentication
-
-  firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  });
+  const [error, setError] = useState();
 
   // Fetch total pushups
 
@@ -41,13 +21,34 @@ function ContextProvider({ children }) {
       .then(function (doc) {
         if (doc.exists) {
           const { total } = doc.data();
+          setError(null);
           setPushups(total);
+        } else {
+          setError("no-pushups-found");
+          setPushups();
         }
       })
-      .catch(function (error) {
-        console.log("Error:", error);
-      });
-  }, [setPushups]);
+      .catch(() => setError("get-pushups-fail"));
+  }, [pushups, setPushups]);
+
+  // Log in
+
+  const handleLogIn = () => {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .catch(() => setError("invalid-auth"));
+  };
+
+  // Authentication
+
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  });
 
   // Submit a new session to the db
 
@@ -81,12 +82,8 @@ function ContextProvider({ children }) {
       .then((doc) => {
         const { total } = doc.data();
         setPushups(total);
-
-        console.log(total);
       })
-      .catch(function (error) {
-        console.log("Error:", error);
-      });
+      .catch(() => setError("get-pushups-fail"));
   };
 
   return (
