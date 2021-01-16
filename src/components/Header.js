@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -12,12 +13,14 @@ const Title = styled.h1`
   opacity: 0.9;
   font-size: 3.5rem;
   font-weight: 600;
+  cursor: pointer;
 `;
 
 export default function Header({ children, ...props }) {
+  const history = useHistory();
   return (
     <Container>
-      <Title>Push App</Title>
+      <Title onClick={() => history.push("/")}>Push App</Title>
     </Container>
   );
 }
