@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import About from "./About";
 
 import { ContextProvider } from "./Context";
 
@@ -11,6 +10,8 @@ import Nav from "./components/Nav";
 import SwitchWrapper from "./components/SwitchWrapper";
 import Login from "./components/Login";
 import AddForm from "./components/AddForm";
+import Home from "./components/Home";
+import About from "./components/About";
 
 const App = () => {
   return (
@@ -21,7 +22,9 @@ const App = () => {
           <Counter />
           <SwitchWrapper>
             <Switch>
-              <Route path="/" exact />
+              <Route path="/" exact>
+                <Home />
+              </Route>
               <Route path="/about">
                 <About />
               </Route>
