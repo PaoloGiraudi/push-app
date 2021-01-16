@@ -29,7 +29,6 @@ const Count = styled.h1`
 
 export default function Counter({ children, ...props }) {
   const { pushups } = useContext(Context);
-  console.log("hej");
   return (
     <Container>
       <Count>{pushups}</Count>
