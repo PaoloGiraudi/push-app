@@ -23,6 +23,7 @@ export const Input = styled.input`
   opacity: 0.9;
   border: none;
   border-radius: 5px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 `;
 export const Button = styled.button`
   display: block;
@@ -33,9 +34,11 @@ export const Button = styled.button`
   border-radius: 5px;
   opacity: 0.9;
   cursor: pointer;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 
   :hover {
-    opacity: 0.7;
+    opacity: 0.8;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
   }
 `;
 
