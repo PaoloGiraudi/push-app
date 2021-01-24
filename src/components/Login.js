@@ -10,11 +10,13 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 1em 2em;
 `;
 export const Text = styled.p`
   margin-bottom: 0.5em;
   font-size: 1.125rem;
 `;
+
 export const Input = styled.input`
   margin-bottom: 1em;
   font-size: 1.125rem;
