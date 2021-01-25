@@ -9,23 +9,28 @@ const ArrowUp = styled(BsArrowUp)`
 `;
 
 const ArrowDownLeft = styled(BsArrowDownLeft)`
-  font-size: 3rem;
+  font-size: 2rem;
   margin-right: 2rem;
-  margin-top: 1rem;
+
 `;
 
 const TextBig = styled(Text)`
   font-size: 1.25rem;
-  margin-bottom: 4rem;
+  margin-bottom: 6rem;
+`;
+
+const TextSmall = styled(Text)`
+  font-size: 1rem;
+  margin-bottom: 1rem;
+
 `;
 
 export default function Home({ children, ...props }) {
   return (
     <Container>
       <ArrowUp />
-      <TextBig>This is the number of pushups made by Paolo in 2021.</TextBig>
-
-      <Text>More info here</Text>
+      <TextBig>This is the number of pushups by Paolo in 2021.</TextBig>
+      <TextSmall>Few more info here</TextSmall>
       <ArrowDownLeft />
     </Container>
   );
