@@ -6,7 +6,7 @@ It is a simple tool built using React Router and Firebase.
 
 ## How does it work?
 
-![](https://i.imgur.com/3hMvnwr.gif)
+<img src="https://i.imgur.com/3hMvnwr.gif" width="50%" height="50%" />
 
 ## Take a look here
 
