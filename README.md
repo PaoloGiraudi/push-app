@@ -1,14 +1,14 @@
 # Push App
 
-*"I use Push App to keep track of my pushups."*
+_"I use Push App to keep track of my pushups."_
 
-- Paolo
+-Paolo, 2021
 
 ## Description
 
-Push App is built using React Router. 
+Push App is built using React Router.
 
-The page to add pushups is hidden and only the admin (me) can add a session. 
+The page to add pushups is hidden and only the admin (me) can add a session.
 
 I use Firebase for the `auth()` process.
 
