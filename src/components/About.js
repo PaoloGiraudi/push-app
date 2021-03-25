@@ -30,19 +30,21 @@ export default function About({ children, ...props }) {
         It is all made by{" "}
         <Link href="https://paologiraudi.com" target="_blank">
           Paolo.
-        </Link>{" "}
+        </Link>
       </AnswerText>
-      <QuestionText>Are you trying to get bigger?</QuestionText>
-      <AnswerText>No, I am trying to learn React.</AnswerText>
-      <QuestionText>Can I have more technical info on the project?</QuestionText>
+      <QuestionText>What is the purpose of Push App?</QuestionText>
+      <AnswerText>Mostly, to learn about React and Firebase.</AnswerText>
+      <QuestionText>
+        Can I look at the code?
+      </QuestionText>
       <AnswerText>
-        Sure, check out my{" "}
+        Sure, check it out at my{" "}
         <Link href="https://github.com/PaoloGiraudi/" target="_blank">
           GitHub Page.
         </Link>
       </AnswerText>
-      <QuestionText>Why do you want to count your pushups?</QuestionText>
-      <AnswerText>I like numbers.</AnswerText>
+      <QuestionText>Why push ups in particular?</QuestionText>
+      <AnswerText>For some reason they are in my rutine. I needed something simple to track.</AnswerText>
     </Container>
   );
 }
