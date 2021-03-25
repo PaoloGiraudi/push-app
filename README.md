@@ -8,7 +8,7 @@ _"I use Push App to keep track of my pushups."_
 
 Push App is built using React Router.
 
-The page to add pushups is hidden and only the admin (me) can add a session.
+The add-pushups-page is hidden and only the admin (me) can add a new session.
 
 I use Firebase for the `auth()` process.
 
