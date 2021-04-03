@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Wrapper = styled.div`
+const Wrap = styled.div`
   overflow: hidden;
   text-align: center;
   background: linear-gradient(150deg, #b45d00 40%, #323f00 100%);
@@ -14,6 +14,6 @@ const Wrapper = styled.div`
   padding: 1rem;
 `;
 
-export default function Header({ children, ...props }) {
-  return <Wrapper>{children}</Wrapper>;
+export default function Wrapper({ children, ...props }) {
+  return <Wrap>{children}</Wrap>;
 }
