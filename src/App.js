@@ -7,11 +7,11 @@ import Header from "./components/Header";
 import Wrapper from "./components/Wrapper";
 import Counter from "./components/Counter";
 import Nav from "./components/Nav";
-import SwitchWrapper from "./components/SwitchWrapper";
-import Login from "./components/Login";
-import AddForm from "./components/AddForm";
-import Home from "./components/Home";
-import About from "./components/About";
+
+import Login from "./pages/Login";
+import AddForm from "./pages/AddForm";
+import Home from "./pages/Home";
+import About from "./pages/About";
 
 const App = () => {
   return (
@@ -20,22 +20,22 @@ const App = () => {
         <Wrapper>
           <Header />
           <Counter />
-          <SwitchWrapper>
-            <Switch>
-              <Route path="/" exact>
-                <Home />
-              </Route>
-              <Route path="/about">
-                <About />
-              </Route>
-              <Route path="/form">
-                <AddForm />
-              </Route>
-              <Route path="/login">
-                <Login />
-              </Route>
-            </Switch>
-          </SwitchWrapper>
+
+          <Switch>
+            <Route path="/" exact>
+              <Home />
+            </Route>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/form">
+              <AddForm />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+          </Switch>
+
           <Nav />
         </Wrapper>
       </Router>
