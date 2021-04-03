@@ -15,7 +15,7 @@ export default function AddForm() {
         value={newPushupsSession}
         onChange={(e) => setNewPushupsSession(e.target.value)}
       />
-      <Button onClick={() => addSession()}>Add</Button>
+      <Button onClick={addSession}>Add</Button>
     </Container>
   );
 }

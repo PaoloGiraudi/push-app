@@ -34,9 +34,7 @@ export default function About({ children, ...props }) {
       </AnswerText>
       <QuestionText>What is the purpose of Push App?</QuestionText>
       <AnswerText>Mostly, to learn about React and Firebase.</AnswerText>
-      <QuestionText>
-        Can I look at the code?
-      </QuestionText>
+      <QuestionText>Can I look at the code?</QuestionText>
       <AnswerText>
         Sure, check it out at my{" "}
         <Link href="https://github.com/PaoloGiraudi/" target="_blank">
@@ -44,7 +42,9 @@ export default function About({ children, ...props }) {
         </Link>
       </AnswerText>
       <QuestionText>Why push ups in particular?</QuestionText>
-      <AnswerText>For some reason they are in my rutine. I needed something simple to track.</AnswerText>
+      <AnswerText>
+        I needed something simple to track in my my routine.
+      </AnswerText>
     </Container>
   );
 }
