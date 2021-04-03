@@ -32,7 +32,7 @@ export default function About({ children, ...props }) {
           Paolo.
         </Link>
       </AnswerText>
-      <QuestionText>What is the purpose of Push App?</QuestionText>
+      <QuestionText>What is the purpose?</QuestionText>
       <AnswerText>Mostly, to learn about React and Firebase.</AnswerText>
       <QuestionText>Can I look at the code?</QuestionText>
       <AnswerText>
@@ -42,9 +42,7 @@ export default function About({ children, ...props }) {
         </Link>
       </AnswerText>
       <QuestionText>Why push ups in particular?</QuestionText>
-      <AnswerText>
-        I needed something simple to track in my my routine.
-      </AnswerText>
+      <AnswerText>I needed something simple to track in my routine.</AnswerText>
     </Container>
   );
 }
