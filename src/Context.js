@@ -11,25 +11,26 @@ function ContextProvider({ children }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState();
 
-  // Fetch total pushups
+  // Fetching the total number of pushups from the db
+
+  const fetchTotal = async () => {
+    const docRef = firebase.firestore().collection("pushups").doc("--total--");
+
+    try {
+      const res = await docRef.get();
+      const { total } = res.data();
+      setPushups(total);
+    } catch (error) {
+      setError(error);
+      console.log(error);
+    }
+  };
+
+  // Updating the pushups state forces the counter to re-render
 
   useEffect(() => {
-    const db = firebase.firestore();
-    const docRef = db.collection("pushups").doc("--total--");
-    docRef
-      .get()
-      .then(function (doc) {
-        if (doc.exists) {
-          const { total } = doc.data();
-          setError(null);
-          setPushups(total);
-        } else {
-          setError("no-pushups-found");
-          setPushups();
-        }
-      })
-      .catch(() => setError("get-pushups-fail"));
-  }, [pushups, setPushups]);
+    fetchTotal();
+  }, [pushups]);
 
   // Log in
 
@@ -70,20 +71,7 @@ function ContextProvider({ children }) {
     });
     batch.commit();
     setNewPushupsSession(0);
-    updateCounter();
-  };
-
-  // Update total on submit --TO FIX--
-
-  const updateCounter = () => {
-    const docRef = firebase.firestore().collection("pushups").doc("--total--");
-    docRef
-      .get()
-      .then((doc) => {
-        const { total } = doc.data();
-        setPushups(total);
-      })
-      .catch(() => setError("get-pushups-fail"));
+    fetchTotal();
   };
 
   return (
