@@ -1,36 +1,65 @@
 import React, { useState, useEffect } from "react";
 import firebase from "firebase";
+import { MdUpdate } from "react-icons/md";
+
+//  prova a eliminare il fetchtotal dal addsession
 
 const Context = React.createContext();
 
 function ContextProvider({ children }) {
-  const [newPushupsSession, setNewPushupsSession] = useState(0);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [updating, setUpdating] = useState(false);
   const [pushups, setPushups] = useState(0);
+  const [newValue, setNewValue] = useState(0);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState();
 
   // Fetching the total number of pushups from the db
-
-  const fetchTotal = async () => {
-    const docRef = firebase.firestore().collection("pushups").doc("--total--");
-
-    try {
-      const res = await docRef.get();
-      const { total } = res.data();
-      setPushups(total);
-    } catch (error) {
-      setError(error);
-      console.log(error);
-    }
-  };
-
-  // Updating the pushups state forces the counter to re-render
+  // Updating state to re-render when a session is added 
 
   useEffect(() => {
+    const fetchTotal = async () => {
+      try {
+        const db = firebase.firestore();
+        const ref = db.collection("pushups").doc("--total--");
+
+        const docs = await ref.get();
+        const { total } = docs.data();
+        setPushups(total);
+        if (total) {
+          setUpdating(false);
+        }
+      } catch (error) {
+        setError(error);
+        console.log(error);
+      }
+    };
     fetchTotal();
-  }, [pushups]);
+  }, [updating]);
+
+  // Add session to the firestore with batch
+
+  const addSession = async () => {
+    const db = firebase.firestore();
+    const batch = db.batch();
+    const value = parseInt(newValue);
+
+    const incrementPushups = firebase.firestore.FieldValue.increment(
+      value || 0
+    );
+    const totalRef = db.collection("pushups").doc("--total--");
+    const pushupsRef = db.collection("pushups").doc(`${Math.random()}`);
+
+    batch.set(totalRef, { total: incrementPushups }, { merge: true });
+    batch.set(pushupsRef, {
+      number: value || 0,
+      date: firebase.firestore.FieldValue.serverTimestamp(),
+    });
+    await batch.commit();
+    setUpdating(true);
+    setNewValue(0);
+  };
 
   // Log in
 
@@ -51,34 +80,11 @@ function ContextProvider({ children }) {
     }
   });
 
-  // Submit a new session to the db
-
-  const addSession = () => {
-    const db = firebase.firestore();
-    const value = parseInt(newPushupsSession);
-
-    const incrementPushups = firebase.firestore.FieldValue.increment(
-      value || 0
-    );
-    const totalRef = db.collection("pushups").doc("--total--");
-    const pushupsRef = db.collection("pushups").doc(`${Math.random()}`);
-    const batch = db.batch();
-
-    batch.set(totalRef, { total: incrementPushups }, { merge: true });
-    batch.set(pushupsRef, {
-      number: value || 0,
-      date: firebase.firestore.FieldValue.serverTimestamp(),
-    });
-    batch.commit();
-    setNewPushupsSession(0);
-    fetchTotal();
-  };
-
   return (
     <Context.Provider
       value={{
-        newPushupsSession,
-        setNewPushupsSession,
+        newValue,
+        setNewValue,
         isLoggedIn,
         setIsLoggedIn,
         pushups,
