@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import firebase from "firebase";
-import { MdUpdate } from "react-icons/md";
-
-//  prova a eliminare il fetchtotal dal addsession
 
 const Context = React.createContext();
 
 function ContextProvider({ children }) {
   const [updating, setUpdating] = useState(false);
-  const [pushups, setPushups] = useState(0);
+  const [totalCount, setTotalCount] = useState(0);
   const [newValue, setNewValue] = useState(0);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [email, setEmail] = useState("");
@@ -26,7 +23,7 @@ function ContextProvider({ children }) {
 
         const docs = await ref.get();
         const { total } = docs.data();
-        setPushups(total);
+        setTotalCount(total);
         if (total) {
           setUpdating(false);
         }
@@ -87,8 +84,8 @@ function ContextProvider({ children }) {
         setNewValue,
         isLoggedIn,
         setIsLoggedIn,
-        pushups,
-        setPushups,
+        totalCount,
+        setTotalCount,
         addSession,
         email,
         setEmail,

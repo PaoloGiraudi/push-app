@@ -28,10 +28,10 @@ const Count = styled.h1`
 `;
 
 export default function Counter({ children, ...props }) {
-  const { pushups } = useContext(Context);
+  const { totalCount } = useContext(Context);
   return (
     <Container>
-      <Count>{pushups}</Count>
+      <Count>{totalCount}</Count>
     </Container>
   );
 }
